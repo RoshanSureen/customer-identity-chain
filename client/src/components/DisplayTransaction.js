@@ -38,7 +38,7 @@ export default class DisplayTransaction extends Component {
     return (
       <div className="Transaction">
         <div>Transaction ID: {txId}</div>
-        <br />
+
         {this.displayDataView}
         <hr />
       </div>

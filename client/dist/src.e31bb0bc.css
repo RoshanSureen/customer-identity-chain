@@ -32,6 +32,10 @@ body {
 .Transaction {
   padding: 5%;
 }
+.txForm {
+  text-align: left;
+  padding: 0 10%;
+}
 
 a,
 a:hover {

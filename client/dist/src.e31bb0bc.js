@@ -46417,6 +46417,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -46452,13 +46454,28 @@ function (_Component) {
     }
 
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ConductTransaction)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
-      userData: ""
-    }, _this.updateData = function (event) {
-      _this.setState({
-        userData: event.target.value
-      });
-    }, _this.saveData = function () {
-      var userData = _this.state.userData;
+      fullName: "",
+      street: "",
+      dob: "",
+      city: "",
+      postcode: "",
+      id: ""
+    }, _this.saveUserDetails = function () {
+      var _this$state = _this.state,
+          fullName = _this$state.fullName,
+          street = _this$state.street,
+          dob = _this$state.dob,
+          city = _this$state.city,
+          postcode = _this$state.postcode,
+          id = _this$state.id;
+      var userData = {
+        fullName: fullName,
+        street: street,
+        dob: dob,
+        city: city,
+        postcode: postcode,
+        nationalID: id
+      };
       fetch("".concat(document.location.origin, "/api/transact"), {
         method: "POST",
         headers: {
@@ -46478,21 +46495,60 @@ function (_Component) {
   }
 
   _createClass(ConductTransaction, [{
+    key: "updateItem",
+    value: function updateItem(event) {
+      event.preventDefault();
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
         className: "ConductTransaction"
       }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
-      }, "Home"), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement(_reactBootstrap.FormLabel, null, "Enter Your Data"), _react.default.createElement(_reactBootstrap.FormControl, {
-        as: "textarea",
-        rows: "15",
-        value: this.state.userData,
-        onChange: this.updateData
-      })), _react.default.createElement(_reactBootstrap.Button, {
+      }, "Home"), _react.default.createElement("br", null), _react.default.createElement("div", null, _react.default.createElement("div", {
+        className: "txForm"
+      }, _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement(_reactBootstrap.FormLabel, null, "Enter Your Full Name"), _react.default.createElement(_reactBootstrap.FormControl, {
+        input: "text",
+        placeholder: "Full Name",
+        name: "fullName",
+        value: this.state.fullName,
+        onChange: this.updateItem.bind(this)
+      })), _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement(_reactBootstrap.FormLabel, null, "Enter Your Street Name"), _react.default.createElement(_reactBootstrap.FormControl, {
+        input: "text",
+        placeholder: "Street name",
+        name: "street",
+        value: this.state.street,
+        onChange: this.updateItem.bind(this)
+      })), _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement(_reactBootstrap.FormLabel, null, "Enter Your Date of Birth"), _react.default.createElement(_reactBootstrap.FormControl, {
+        input: "text",
+        placeholder: "DOB: xx/xx/xxxx",
+        name: "dob",
+        value: this.state.dob,
+        onChange: this.updateItem.bind(this)
+      })), _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement(_reactBootstrap.FormLabel, null, "Enter Your City"), _react.default.createElement(_reactBootstrap.FormControl, {
+        input: "text",
+        placeholder: "City",
+        name: "city",
+        value: this.state.city,
+        onChange: this.updateItem.bind(this)
+      })), _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement(_reactBootstrap.FormLabel, null, "Enter Your Postal Code"), _react.default.createElement(_reactBootstrap.FormControl, {
+        input: "text",
+        placeholder: "Postal Code",
+        name: "postcode",
+        value: this.state.postcode,
+        onChange: this.updateItem.bind(this)
+      })), _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement(_reactBootstrap.FormLabel, null, "Enter Your AUFENTHALTSTITEL number"), _react.default.createElement(_reactBootstrap.FormControl, {
+        input: "text",
+        placeholder: "National ID",
+        name: "id",
+        value: this.state.id,
+        onChange: this.updateItem.bind(this)
+      }))), _react.default.createElement(_reactBootstrap.Button, {
         variant: "danger",
-        onClick: this.saveData
-      }, "Submit"));
+        onClick: this.saveUserDetails
+      }, "Submit")));
     }
   }]);
 
@@ -46687,7 +46743,7 @@ function (_Component) {
       var txId = this.props.transaction.txId;
       return _react.default.createElement("div", {
         className: "Transaction"
-      }, _react.default.createElement("div", null, "Transaction ID: ", txId), _react.default.createElement("br", null), this.displayDataView, _react.default.createElement("hr", null));
+      }, _react.default.createElement("div", null, "Transaction ID: ", txId), this.displayDataView, _react.default.createElement("hr", null));
     }
   }, {
     key: "displayDataView",

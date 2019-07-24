@@ -4,14 +4,30 @@ import { Link } from "react-router-dom";
 import history from "../history";
 
 export default class ConductTransaction extends Component {
-  state = { userData: "" };
-
-  updateData = event => {
-    this.setState({ userData: event.target.value });
+  state = {
+    fullName: "",
+    street: "",
+    dob: "",
+    city: "",
+    postcode: "",
+    id: ""
   };
 
-  saveData = () => {
-    const { userData } = this.state;
+  updateItem(event) {
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  saveUserDetails = () => {
+    const { fullName, street, dob, city, postcode, id } = this.state;
+    const userData = {
+      fullName,
+      street,
+      dob,
+      city,
+      postcode,
+      nationalID: id
+    };
     fetch(`${document.location.origin}/api/transact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -29,19 +45,74 @@ export default class ConductTransaction extends Component {
       <div className="ConductTransaction">
         <Link to="/">Home</Link>
         <br />
-        <FormGroup>
-          <FormLabel>Enter Your Data</FormLabel>
-          <FormControl
-            as="textarea"
-            rows="15"
-            value={this.state.userData}
-            onChange={this.updateData}
-          />
-        </FormGroup>
+        <div>
+          <div className="txForm">
+            <FormGroup>
+              <FormLabel>Enter Your Full Name</FormLabel>
 
-        <Button variant="danger" onClick={this.saveData}>
-          Submit
-        </Button>
+              <FormControl
+                input="text"
+                placeholder="Full Name"
+                name="fullName"
+                value={this.state.fullName}
+                onChange={this.updateItem.bind(this)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Enter Your Street Name</FormLabel>
+              <FormControl
+                input="text"
+                placeholder="Street name"
+                name="street"
+                value={this.state.street}
+                onChange={this.updateItem.bind(this)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Enter Your Date of Birth</FormLabel>
+              <FormControl
+                input="text"
+                placeholder="DOB: xx/xx/xxxx"
+                name="dob"
+                value={this.state.dob}
+                onChange={this.updateItem.bind(this)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Enter Your City</FormLabel>
+              <FormControl
+                input="text"
+                placeholder="City"
+                name="city"
+                value={this.state.city}
+                onChange={this.updateItem.bind(this)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Enter Your Postal Code</FormLabel>
+              <FormControl
+                input="text"
+                placeholder="Postal Code"
+                name="postcode"
+                value={this.state.postcode}
+                onChange={this.updateItem.bind(this)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Enter Your AUFENTHALTSTITEL number</FormLabel>
+              <FormControl
+                input="text"
+                placeholder="National ID"
+                name="id"
+                value={this.state.id}
+                onChange={this.updateItem.bind(this)}
+              />
+            </FormGroup>
+          </div>
+          <Button variant="danger" onClick={this.saveUserDetails}>
+            Submit
+          </Button>
+        </div>
       </div>
     );
   }
