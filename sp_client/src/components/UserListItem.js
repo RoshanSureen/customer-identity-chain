@@ -40,6 +40,8 @@ export default class Block extends Component {
       <div className="userlist">
         <div>User Public Key: {publicKey}</div>
         <div>User Secret Key: {secretKey}</div>
+        <hr />
+        <br />
         {this.displayDataView}
       </div>
     );

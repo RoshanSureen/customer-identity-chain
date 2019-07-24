@@ -22,30 +22,36 @@ router.post("/mine", (req, res) => {
   res.redirect("/api/blocks");
 });
 
-// fetch a transaction based on its id
-router.get("/transactions/:id", (req, res) => {
-  var id = req.params.id;
-
-  let userTransaction = blockchain.fetchTransaction({
+// fetch transaction history of user
+router.get("/transactions", (req, res) => {
+  let transactions = blockchain.fetchTransactions({
     chain: blockchain.chain,
-    id,
     user: wallet.publicKey
   });
 
-  res.json({
-    transaction: userTransaction,
-    decryptedData: cryptr.decrypt(userTransaction.outputMap[wallet.publicKey])
-  });
-});
+  if (transactions === undefined || transactions.length === 0) {
+    res.json({
+      confirmation: "fail",
+      message: "You did not make any transactions",
+      transactions
+    });
+  } else {
+    let userTransactions = [];
 
-// fetch transaction history of user
-router.get("/transactions", (req, res) => {
-  res.json(
-    blockchain.fetchTransactions({
-      chain: blockchain.chain,
-      user: wallet.publicKey
-    })
-  );
+    transactions.forEach(tx => {
+      userTransactions.push({
+        txId: tx.id,
+        publicKey: tx.input.address,
+        timestamp: tx.input.timestamp,
+        decryptedData: cryptr.decrypt(tx.outputMap[wallet.publicKey])
+      });
+    });
+    res.json({
+      confirmation: "success",
+      message: "Your Transaction History",
+      transactions: userTransactions
+    });
+  }
 });
 
 // create a transaction

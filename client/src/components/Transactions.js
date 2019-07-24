@@ -1,15 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import DisplayTransaction from "./DisplayTransaction";
 
 export default class Transactions extends Component {
   state = {
+    message: "",
     transactions: []
   };
 
   componentDidMount() {
     fetch(`${document.location.origin}/api/transactions`)
       .then(response => response.json())
-      .then(json => this.setState({ transactions: json }))
+      .then(json =>
+        this.setState({
+          message: json.message,
+          transactions: json.transactions
+        })
+      )
       .catch(err => console.log(err));
   }
 
@@ -19,16 +26,16 @@ export default class Transactions extends Component {
         <div>
           <Link to="/">Home</Link>
         </div>
-        <h3>History of Transactions</h3>
-        <ul className="list-group">
-          {this.state.transactions.map(tx => {
-            return (
-              <li className="list-group-item" key={tx.id}>
-                <Link to={`/transactions/${tx.id}`}>{tx.id}</Link>
-              </li>
-            );
-          })}
-        </ul>
+        {this.state.transactions.length === 0 ? (
+          <h3>{this.state.message}</h3>
+        ) : (
+          <div>
+            <h3>{this.state.message}</h3>
+            {this.state.transactions.map(tx => {
+              return <DisplayTransaction key={tx.txId} transaction={tx} />;
+            })}
+          </div>
+        )}
       </div>
     );
   }

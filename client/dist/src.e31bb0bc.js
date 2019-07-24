@@ -46386,7 +46386,7 @@ function (_Component) {
         to: "/transactions"
       }, "View Your Transactions")), _react.default.createElement("br", null), _react.default.createElement("div", {
         className: "WalletInfo"
-      }, _react.default.createElement("div", null, "Address: ", address), _react.default.createElement("div", null, "Your Secret Key: ", secretKey)));
+      }, _react.default.createElement("div", null, "Address: ", address), _react.default.createElement("br", null), _react.default.createElement("div", null, "Your Secret Key: ", secretKey)));
     }
   }]);
 
@@ -46622,7 +46622,101 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = TransactionPool;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../../node_modules/react-bootstrap/es/index.js","./Transaction":"components/Transaction.js","../history":"history.js"}],"components/Transactions.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../../node_modules/react-bootstrap/es/index.js","./Transaction":"components/Transaction.js","../history":"history.js"}],"components/DisplayTransaction.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactBootstrap = require("react-bootstrap");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var DisplayTransaction =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(DisplayTransaction, _Component);
+
+  function DisplayTransaction() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    var _temp;
+
+    _classCallCheck(this, DisplayTransaction);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DisplayTransaction)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
+      displayData: false
+    }, _this.toggleDataView = function () {
+      _this.setState({
+        displayData: !_this.state.displayData
+      });
+    }, _temp));
+  }
+
+  _createClass(DisplayTransaction, [{
+    key: "render",
+    value: function render() {
+      var txId = this.props.transaction.txId;
+      return _react.default.createElement("div", {
+        className: "Transaction"
+      }, _react.default.createElement("div", null, "Transaction ID: ", txId), _react.default.createElement("br", null), this.displayDataView, _react.default.createElement("hr", null));
+    }
+  }, {
+    key: "displayDataView",
+    get: function get() {
+      var _this$props$transacti = this.props.transaction,
+          timestamp = _this$props$transacti.timestamp,
+          decryptedData = _this$props$transacti.decryptedData;
+
+      if (this.state.displayData) {
+        return _react.default.createElement("div", null, _react.default.createElement("div", null, "Timestamp: ", new Date(timestamp).toLocaleDateString()), _react.default.createElement("div", null, "Decrypted User Data: ", decryptedData), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
+          variant: "danger",
+          size: "sm",
+          onClick: this.toggleDataView
+        }, "Show Less"));
+      }
+
+      return _react.default.createElement("div", null, _react.default.createElement(_reactBootstrap.Button, {
+        variant: "danger",
+        size: "sm",
+        onClick: this.toggleDataView
+      }, "Show More"));
+    }
+  }]);
+
+  return DisplayTransaction;
+}(_react.Component);
+
+exports.default = DisplayTransaction;
+},{"react":"../../node_modules/react/index.js","react-bootstrap":"../../node_modules/react-bootstrap/es/index.js"}],"components/Transactions.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46633,6 +46727,10 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
+
+var _DisplayTransaction = _interopRequireDefault(require("./DisplayTransaction"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -46673,6 +46771,7 @@ function (_Component) {
     }
 
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Transactions)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
+      message: "",
       transactions: []
     }, _temp));
   }
@@ -46686,7 +46785,8 @@ function (_Component) {
         return response.json();
       }).then(function (json) {
         return _this2.setState({
-          transactions: json
+          message: json.message,
+          transactions: json.transactions
         });
       }).catch(function (err) {
         return console.log(err);
@@ -46697,15 +46797,11 @@ function (_Component) {
     value: function render() {
       return _react.default.createElement("div", null, _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
-      }, "Home")), _react.default.createElement("h3", null, "History of Transactions"), _react.default.createElement("ul", {
-        className: "list-group"
-      }, this.state.transactions.map(function (tx) {
-        return _react.default.createElement("li", {
-          className: "list-group-item",
-          key: tx.id
-        }, _react.default.createElement(_reactRouterDom.Link, {
-          to: "/transactions/".concat(tx.id)
-        }, tx.id));
+      }, "Home")), this.state.transactions.length === 0 ? _react.default.createElement("h3", null, this.state.message) : _react.default.createElement("div", null, _react.default.createElement("h3", null, this.state.message), this.state.transactions.map(function (tx) {
+        return _react.default.createElement(_DisplayTransaction.default, {
+          key: tx.txId,
+          transaction: tx
+        });
       })));
     }
   }]);
@@ -46714,59 +46810,7 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = Transactions;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/DisplayTransaction.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var DisplayTransaction =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(DisplayTransaction, _Component);
-
-  function DisplayTransaction() {
-    _classCallCheck(this, DisplayTransaction);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(DisplayTransaction).apply(this, arguments));
-  }
-
-  _createClass(DisplayTransaction, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement("div", null);
-    }
-  }]);
-
-  return DisplayTransaction;
-}(_react.Component);
-
-exports.default = DisplayTransaction;
-},{"react":"../../node_modules/react/index.js"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./DisplayTransaction":"components/DisplayTransaction.js"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -46859,8 +46903,6 @@ var _TransactionPool = _interopRequireDefault(require("./components/TransactionP
 
 var _Transactions = _interopRequireDefault(require("./components/Transactions"));
 
-var _DisplayTransaction = _interopRequireDefault(require("./components/DisplayTransaction"));
-
 require("./index.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -46883,11 +46925,8 @@ _reactDom.default.render(_react.default.createElement(_reactRouterDom.Router, {
 }), _react.default.createElement(_reactRouterDom.Route, {
   path: "/transactions",
   component: _Transactions.default
-}), _react.default.createElement(_reactRouterDom.Route, {
-  path: "/transactions/:id",
-  component: _DisplayTransaction.default
 }))), document.getElementById("root"));
-},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./history":"history.js","./components/Blocks":"components/Blocks.js","./components/App":"components/App.js","./components/ConductTransaction":"components/ConductTransaction.js","./components/TransactionPool":"components/TransactionPool.js","./components/Transactions":"components/Transactions.js","./components/DisplayTransaction":"components/DisplayTransaction.js","./index.css":"index.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./history":"history.js","./components/Blocks":"components/Blocks.js","./components/App":"components/App.js","./components/ConductTransaction":"components/ConductTransaction.js","./components/TransactionPool":"components/TransactionPool.js","./components/Transactions":"components/Transactions.js","./index.css":"index.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -46915,7 +46954,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57514" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64517" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

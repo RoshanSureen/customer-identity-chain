@@ -7,7 +7,6 @@ import App from "./components/App";
 import ConductTransaction from "./components/ConductTransaction";
 import TransactionPool from "./components/TransactionPool";
 import Transactions from "./components/Transactions";
-import DisplayTransaction from "./components/DisplayTransaction";
 import "./index.css";
 
 ReactDOM.render(
@@ -18,7 +17,6 @@ ReactDOM.render(
       <Route path="/conduct-transaction" component={ConductTransaction} />
       <Route path="/transaction-pool" component={TransactionPool} />
       <Route path="/transactions" component={Transactions} />
-      <Route path="/transactions/:id" component={DisplayTransaction} />
     </Switch>
   </Router>,
   document.getElementById("root")
