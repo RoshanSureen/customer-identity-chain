@@ -80,11 +80,12 @@ if (!process.env.GENERATE_PEER_PORT) {
       wallet,
       encryptedData: cryptr.encrypt(
         JSON.stringify({
-          "First Name": "Roshan",
-          "Last Name": "Sureen",
-          Address: "Zimmermanstrasse 14",
-          "Postal-Code": "37077",
-          City: "Goettingen"
+          fullName: "Roshan Sureen",
+          street: "Zimmermanstrasse 14",
+          dob: "29/07/1995",
+          city: "Goettingen",
+          postcode: "37077",
+          id: "DFGHJKJHGE456"
         })
       )
     });
@@ -94,11 +95,12 @@ if (!process.env.GENERATE_PEER_PORT) {
       wallet: walletFoo,
       encryptedData: cryptrFoo.encrypt(
         JSON.stringify({
-          "First Name": "Rishabh",
-          "Last Name": "Stark",
-          Address: "Albrecht Thaer Weg 12",
-          "Postal-Code": "37075",
-          City: "Goettingen"
+          fullName: "John Doe",
+          street: "Robert Koch Strasse 04",
+          dob: "01/04/1990",
+          city: "Goettingen",
+          postcode: "37075",
+          id: "WERTMNBV456"
         })
       )
     });
@@ -108,11 +110,12 @@ if (!process.env.GENERATE_PEER_PORT) {
       wallet: walletBar,
       encryptedData: cryptrBar.encrypt(
         JSON.stringify({
-          "First Name": "Grigor",
-          "Last Name": "Davtyan",
-          Address: "Annastrasse 4",
-          "Postal-Code": "37075",
-          City: "Goettingen"
+          fullName: "Maria Phoneix",
+          street: "Christophurusweg 33",
+          dob: "22/06/1997",
+          city: "Goettingen",
+          postcode: "37075",
+          id: "SERTYUILKNBV456"
         })
       )
     });

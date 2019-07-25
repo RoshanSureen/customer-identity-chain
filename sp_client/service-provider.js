@@ -41,12 +41,13 @@ app.get("/api/updates", (req, res) => {
         userTransactions[i].input.address === item.publicKey
       ) {
         const cryptr = new Cryptr(item.secretKey);
+        const decryptedData = cryptr.decrypt(
+          userTransactions[i].outputMap[item.publicKey]
+        );
         updates.push({
           publicKey: userTransactions[i].input.address,
           secretKey: item.secretKey,
-          decryptedData: cryptr.decrypt(
-            userTransactions[i].outputMap[item.publicKey]
-          )
+          decryptedData: JSON.parse(decryptedData)
         });
         break;
       }
@@ -84,14 +85,17 @@ app.get("/api/userlist", (req, res) => {
       });
       console.log(txs);
       let latestTransaction = txs[txs.length - 1];
+
       const cryptr = new Cryptr(item.secretKey);
+      const decryptedData = cryptr.decrypt(
+        latestTransaction.outputMap[item.publicKey]
+      );
+      console.log(decryptedData);
       userTransactions.push({
         publicKey: latestTransaction.input.address,
         secretKey: item.secretKey,
         timestamp: latestTransaction.input.timestamp,
-        decryptedData: cryptr.decrypt(
-          latestTransaction.outputMap[item.publicKey]
-        )
+        decryptedData: JSON.parse(decryptedData)
       });
     });
     res.json({

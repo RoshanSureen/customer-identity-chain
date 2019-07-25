@@ -55,10 +55,21 @@ export default class updates extends Component {
               return (
                 <div>
                   <h3>User Public Key: {update["publicKey"]}</h3>
-                  <br />
                   <h3>User Secret Key: {update["secretKey"]}</h3>
                   <br />
-                  <h3>New User Data: {update["decryptedData"]}</h3>
+                  <div>New User Data:</div>
+                  <div>&#123;</div>
+
+                  <h3>Full Name: {update.decryptedData.fullName}</h3>
+
+                  <h3>Date of Birth: {update.decryptedData.dob}</h3>
+
+                  <h3>Street Name: {update.decryptedData.street}</h3>
+                  <h3>City: {update.decryptedData.city}</h3>
+                  <h3>Postal Code: {update.decryptedData.postcode}</h3>
+                  <h3>National ID: {update.decryptedData.nationalID}</h3>
+
+                  <div>&#125;</div>
                   <br />
                   <hr />
                 </div>

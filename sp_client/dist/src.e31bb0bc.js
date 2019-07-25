@@ -46139,7 +46139,7 @@ function (_Component) {
       var _this2 = this;
 
       this.checkUpdates();
-      this.TransactionPoolInterval = setInterval(function () {
+      this.updateInterval = setInterval(function () {
         return _this2.checkUpdates();
       }, 4000);
     }
@@ -46200,25 +46200,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var Block =
+var UserListItem =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Block, _Component);
+  _inherits(UserListItem, _Component);
 
-  function Block() {
+  function UserListItem() {
     var _getPrototypeOf2;
 
     var _this;
 
     var _temp;
 
-    _classCallCheck(this, Block);
+    _classCallCheck(this, UserListItem);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Block)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(UserListItem)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
       displayData: false
     }, _this.toggleDataView = function () {
       _this.setState({
@@ -46227,7 +46227,7 @@ function (_Component) {
     }, _temp));
   }
 
-  _createClass(Block, [{
+  _createClass(UserListItem, [{
     key: "render",
     value: function render() {
       var _this$props$user = this.props.user,
@@ -46235,7 +46235,7 @@ function (_Component) {
           secretKey = _this$props$user.secretKey;
       return _react.default.createElement("div", {
         className: "userlist"
-      }, _react.default.createElement("div", null, "User Public Key: ", publicKey), _react.default.createElement("div", null, "User Secret Key: ", secretKey), this.displayDataView);
+      }, _react.default.createElement("div", null, "User Public Key: ", publicKey), _react.default.createElement("div", null, "User Secret Key: ", secretKey), _react.default.createElement("hr", null), this.displayDataView);
     }
   }, {
     key: "displayDataView",
@@ -46245,14 +46245,14 @@ function (_Component) {
           decryptedData = _this$props$user2.decryptedData;
 
       if (this.state.displayData) {
-        return _react.default.createElement("div", null, _react.default.createElement("div", null, "Timestamp: ", new Date(timestamp).toLocaleDateString()), _react.default.createElement("div", null, "Decrypted User Data: ", decryptedData), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
+        return _react.default.createElement("div", null, _react.default.createElement("div", null, "Timestamp: ", new Date(timestamp).toLocaleDateString()), _react.default.createElement("div", null, "Decrypted User Data:"), _react.default.createElement("div", null, "{"), _react.default.createElement("h3", null, "Full Name: ", decryptedData.fullName), _react.default.createElement("h3", null, "Date of Birth: ", decryptedData.dob), _react.default.createElement("h3", null, "Street Name: ", decryptedData.street), _react.default.createElement("h3", null, "City: ", decryptedData.city), _react.default.createElement("h3", null, "Postal Code: ", decryptedData.postcode), _react.default.createElement("h3", null, "National ID: ", decryptedData.id), _react.default.createElement("div", null, "}"), _react.default.createElement(_reactBootstrap.Button, {
           variant: "danger",
           size: "sm",
           onClick: this.toggleDataView
         }, "Show Less"));
       }
 
-      return _react.default.createElement("div", null, _react.default.createElement("div", null, "Data: ...."), _react.default.createElement(_reactBootstrap.Button, {
+      return _react.default.createElement("div", null, _react.default.createElement(_reactBootstrap.Button, {
         variant: "danger",
         size: "sm",
         onClick: this.toggleDataView
@@ -46260,10 +46260,10 @@ function (_Component) {
     }
   }]);
 
-  return Block;
+  return UserListItem;
 }(_react.Component);
 
-exports.default = Block;
+exports.default = UserListItem;
 },{"react":"../../node_modules/react/index.js","react-bootstrap":"../../node_modules/react-bootstrap/es/index.js"}],"components/UserList.js":[function(require,module,exports) {
 "use strict";
 
@@ -46593,7 +46593,7 @@ function (_Component) {
       }, "Home")), updates.length === 0 ? _react.default.createElement("h3", null, message) : _react.default.createElement("div", {
         className: "updates"
       }, _react.default.createElement("h3", null, message), _react.default.createElement("hr", null), updates.map(function (update) {
-        return _react.default.createElement("div", null, _react.default.createElement("h3", null, "User Public Key: ", update["publicKey"]), _react.default.createElement("br", null), _react.default.createElement("h3", null, "User Secret Key: ", update["secretKey"]), _react.default.createElement("br", null), _react.default.createElement("h3", null, "New User Data: ", update["decryptedData"]), _react.default.createElement("br", null), _react.default.createElement("hr", null));
+        return _react.default.createElement("div", null, _react.default.createElement("h3", null, "User Public Key: ", update["publicKey"]), _react.default.createElement("h3", null, "User Secret Key: ", update["secretKey"]), _react.default.createElement("br", null), _react.default.createElement("div", null, "New User Data:"), _react.default.createElement("div", null, "{"), _react.default.createElement("h3", null, "Full Name: ", update.decryptedData.fullName), _react.default.createElement("h3", null, "Date of Birth: ", update.decryptedData.dob), _react.default.createElement("h3", null, "Street Name: ", update.decryptedData.street), _react.default.createElement("h3", null, "City: ", update.decryptedData.city), _react.default.createElement("h3", null, "Postal Code: ", update.decryptedData.postcode), _react.default.createElement("h3", null, "National ID: ", update.decryptedData.nationalID), _react.default.createElement("div", null, "}"), _react.default.createElement("br", null), _react.default.createElement("hr", null));
       }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         onClick: this.updateList
@@ -46747,7 +46747,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57709" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62993" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

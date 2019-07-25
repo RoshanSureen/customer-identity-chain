@@ -17,8 +17,9 @@ class App extends Component {
   componentDidMount() {
     this.checkUpdates();
 
-    this.TransactionPoolInterval = setInterval(() => this.checkUpdates(), 4000);
+    this.updateInterval = setInterval(() => this.checkUpdates(), 4000);
   }
+
   render() {
     return (
       <div>

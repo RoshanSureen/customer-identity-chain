@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 
-export default class Block extends Component {
+export default class UserListItem extends Component {
   state = { displayData: false };
 
   toggleDataView = () => {
@@ -15,8 +15,19 @@ export default class Block extends Component {
       return (
         <div>
           <div>Timestamp: {new Date(timestamp).toLocaleDateString()}</div>
-          <div>Decrypted User Data: {decryptedData}</div>
-          <br />
+          <div>Decrypted User Data:</div>
+          <div>&#123;</div>
+
+          <h3>Full Name: {decryptedData.fullName}</h3>
+
+          <h3>Date of Birth: {decryptedData.dob}</h3>
+
+          <h3>Street Name: {decryptedData.street}</h3>
+          <h3>City: {decryptedData.city}</h3>
+          <h3>Postal Code: {decryptedData.postcode}</h3>
+          <h3>National ID: {decryptedData.id}</h3>
+
+          <div>&#125;</div>
           <Button variant="danger" size="sm" onClick={this.toggleDataView}>
             Show Less
           </Button>
@@ -26,7 +37,6 @@ export default class Block extends Component {
 
     return (
       <div>
-        <div>Data: ....</div>
         <Button variant="danger" size="sm" onClick={this.toggleDataView}>
           Show More
         </Button>
@@ -41,7 +51,7 @@ export default class Block extends Component {
         <div>User Public Key: {publicKey}</div>
         <div>User Secret Key: {secretKey}</div>
         <hr />
-        <br />
+
         {this.displayDataView}
       </div>
     );

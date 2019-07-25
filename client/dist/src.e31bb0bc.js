@@ -46753,7 +46753,8 @@ function (_Component) {
           decryptedData = _this$props$transacti.decryptedData;
 
       if (this.state.displayData) {
-        return _react.default.createElement("div", null, _react.default.createElement("div", null, "Timestamp: ", new Date(timestamp).toLocaleDateString()), _react.default.createElement("div", null, "Decrypted User Data: ", decryptedData), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
+        var userData = JSON.parse(decryptedData);
+        return _react.default.createElement("div", null, _react.default.createElement("div", null, "Timestamp: ", new Date(timestamp).toLocaleDateString()), _react.default.createElement("div", null, "Decrypted User Data:"), _react.default.createElement("div", null, "{"), _react.default.createElement("h3", null, "Full Name: ", userData.fullName), _react.default.createElement("h3", null, "Date of Birth: ", userData.dob), _react.default.createElement("h3", null, "Street Name: ", userData.street), _react.default.createElement("h3", null, "City: ", userData.city), _react.default.createElement("h3", null, "Postal Code: ", userData.postcode), _react.default.createElement("h3", null, "National ID: ", userData.id), _react.default.createElement("div", null, "}"), _react.default.createElement(_reactBootstrap.Button, {
           variant: "danger",
           size: "sm",
           onClick: this.toggleDataView
@@ -47010,7 +47011,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64517" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62975" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
