@@ -53,6 +53,8 @@ Open up 2 browser windows, one with **localhost:3000** and the other with **loca
 
 Conduct a transaction in one window and see the transaction pool updating in the other.
 
+For a demo, please check the video titled **user-interaction.mov**
+
 ---
 
 ### System with service provider
@@ -72,6 +74,8 @@ npm run service-provider
 Open up 2 browser windows, one with **localhost:3000** and the other with **localhost:5000**.
 
 <img src="img/service-provider.png">
+
+For a demo, please check the video titled **service-provider-interaction.mov**
 
 ---
 
