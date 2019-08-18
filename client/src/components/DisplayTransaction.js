@@ -45,6 +45,7 @@ export default class DisplayTransaction extends Component {
     );
   }
   render() {
+    console.log(this.props.transaction);
     const { txId } = this.props.transaction;
 
     return (

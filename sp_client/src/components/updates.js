@@ -67,7 +67,7 @@ export default class updates extends Component {
                   <h3>Street Name: {update.decryptedData.street}</h3>
                   <h3>City: {update.decryptedData.city}</h3>
                   <h3>Postal Code: {update.decryptedData.postcode}</h3>
-                  <h3>National ID: {update.decryptedData.nationalID}</h3>
+                  <h3>National ID: {update.decryptedData.id}</h3>
 
                   <div>&#125;</div>
                   <br />

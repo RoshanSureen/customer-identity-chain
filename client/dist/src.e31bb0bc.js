@@ -46474,7 +46474,7 @@ function (_Component) {
         dob: dob,
         city: city,
         postcode: postcode,
-        nationalID: id
+        id: id
       };
       fetch("".concat(document.location.origin, "/api/transact"), {
         method: "POST",
@@ -46740,6 +46740,7 @@ function (_Component) {
   _createClass(DisplayTransaction, [{
     key: "render",
     value: function render() {
+      console.log(this.props.transaction);
       var txId = this.props.transaction.txId;
       return _react.default.createElement("div", {
         className: "Transaction"
@@ -47011,7 +47012,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62975" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63672" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -26,7 +26,7 @@ export default class ConductTransaction extends Component {
       dob,
       city,
       postcode,
-      nationalID: id
+      id
     };
     fetch(`${document.location.origin}/api/transact`, {
       method: "POST",

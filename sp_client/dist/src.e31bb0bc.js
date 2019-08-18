@@ -46593,7 +46593,7 @@ function (_Component) {
       }, "Home")), updates.length === 0 ? _react.default.createElement("h3", null, message) : _react.default.createElement("div", {
         className: "updates"
       }, _react.default.createElement("h3", null, message), _react.default.createElement("hr", null), updates.map(function (update) {
-        return _react.default.createElement("div", null, _react.default.createElement("h3", null, "User Public Key: ", update["publicKey"]), _react.default.createElement("h3", null, "User Secret Key: ", update["secretKey"]), _react.default.createElement("br", null), _react.default.createElement("div", null, "New User Data:"), _react.default.createElement("div", null, "{"), _react.default.createElement("h3", null, "Full Name: ", update.decryptedData.fullName), _react.default.createElement("h3", null, "Date of Birth: ", update.decryptedData.dob), _react.default.createElement("h3", null, "Street Name: ", update.decryptedData.street), _react.default.createElement("h3", null, "City: ", update.decryptedData.city), _react.default.createElement("h3", null, "Postal Code: ", update.decryptedData.postcode), _react.default.createElement("h3", null, "National ID: ", update.decryptedData.nationalID), _react.default.createElement("div", null, "}"), _react.default.createElement("br", null), _react.default.createElement("hr", null));
+        return _react.default.createElement("div", null, _react.default.createElement("h3", null, "User Public Key: ", update["publicKey"]), _react.default.createElement("h3", null, "User Secret Key: ", update["secretKey"]), _react.default.createElement("br", null), _react.default.createElement("div", null, "New User Data:"), _react.default.createElement("div", null, "{"), _react.default.createElement("h3", null, "Full Name: ", update.decryptedData.fullName), _react.default.createElement("h3", null, "Date of Birth: ", update.decryptedData.dob), _react.default.createElement("h3", null, "Street Name: ", update.decryptedData.street), _react.default.createElement("h3", null, "City: ", update.decryptedData.city), _react.default.createElement("h3", null, "Postal Code: ", update.decryptedData.postcode), _react.default.createElement("h3", null, "National ID: ", update.decryptedData.id), _react.default.createElement("div", null, "}"), _react.default.createElement("br", null), _react.default.createElement("hr", null));
       }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
         variant: "success",
         onClick: this.updateList
@@ -46747,7 +46747,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62993" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63681" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

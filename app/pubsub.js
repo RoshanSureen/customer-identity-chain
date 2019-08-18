@@ -27,6 +27,7 @@ class PubSub {
     const parsedMessage = JSON.parse(message);
 
     switch (channel) {
+      // update all chains in network with longest chain and clear all transaction Pools
       case CHANNELS.BLOCKCHAIN:
         this.blockchain.replaceChain(parsedMessage, true, () => {
           this.transactionPool.clearBlockchainTransactions({
@@ -34,6 +35,8 @@ class PubSub {
           });
         });
         break;
+
+      // update transaction Pool of nodes in network
       case CHANNELS.TRANSACTION:
         this.transactionPool.setTransaction(parsedMessage);
         break;
